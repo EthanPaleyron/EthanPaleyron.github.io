@@ -8,18 +8,39 @@
   <style type="text/tailwindcss">
     @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
     @layer utilities {
-        * {
-          font-size: 1.3rem;
+        img {
+          object-fit: cover;
+        }
+        p, a {
+          font-size: 1rem;
+          font-weight: 500;
           font-family: "Nunito", sans-serif;
         }
         h1 {
-          font-size: 3.3rem;
-          font-weight: bold;
+          font-size: 4rem;
+          font-weight: 700;
           font-family: "Space Mono", monospace;
+          line-height: 3.2rem;
         }
         h2 {
-          font-size: 2.7rem;
-          font-weight: bold;
+          font-size: 1.7rem;
+          font-weight: 700;
+          line-height: 2.2rem;
+          font-family: "Nunito", sans-serif;
+        }
+        @media screen and (max-width: 768px) {
+          * {
+            font-size: 0.5rem;
+            line-height: 0.6rem;
+          }
+          h1 {
+            font-size: 2.6rem;
+            line-height: 2.3rem;
+          }
+          h2 {
+            font-size: 1.1rem;
+            line-height: 1.1rem;
+          }
         }
       }
     </style>
@@ -37,12 +58,73 @@
       }
     }
   </script>
+  <title>Ethan Paleyron</title>
 </head>
 
 <body>
-  <h1>
-    Ethan Paleyron
-  </h1>
+  <main
+    class="w-full md:w-2/4 h-lvh p-8 pr-20 text-white bg-gradient-to-t from-dark_blue to-light_brown flex flex-col gap-12">
+
+    <section class="flex">
+      <img src="public/GH019198009.jpg" alt="Photo de profile" style="border-radius: 50% 30% 50% 30% / 30% 50% 30% 50%;"
+        class="w-40 h-40 custom-image ease-out duration-300 hover:rotate-12">
+      <div class="ml-16 flex flex-col justify-between">
+        <h1 class="uppercase">
+          Ethan<br>Paleyron
+        </h1>
+        <h2>Développeur Web Fullstack</h2>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bienvenue sur mon link in bio!</h2>
+      <p>J'ai 18 ans et je me suis lancé dans l'informatique en tant que développeur web Fullstack en alternance au sein
+        de l'établissement EDEN SCHOOL.</p>
+    </section>
+
+    <section>
+      <h2>Mes passions</h2>
+      <div class="flex justify-between leading-10">
+        <ul>
+          <li class="flex items-center group"><img src="public/icon/hand-fist.svg" alt="Main poing"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Boxe</li>
+          <li class="flex items-center group"><img src="public/icon/book-open-reader.svg" alt="Livre ouvert lecteur"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Développement
+            personnel</li>
+          <li class="flex items-center group"><img src="public/icon/chess-knight.svg" alt="Chevalier"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Echecs</li>
+          <li class="flex items-center group"><img src="public/icon/mountain.svg" alt="Montagne"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Escalade</li>
+        </ul>
+        <ul>
+          <li class="flex items-center group"><img src="public/icon/gamepad.svg" alt="Manette de jeu"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Jeux Vidéo
+            (Minecraft, Brawl stars, Geometry dash)</li>
+          <li class="flex items-center group"><img src="public/icon/music.svg" alt="Musique"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Musique (dubstep,
+            rap americain)</li>
+          <li class="flex items-center group"><img src="public/icon/fish.svg" alt="Poisson"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Plongée</li>
+        </ul>
+        <ul>
+          <li class="flex items-center group"><img src="public/icon/parachute.svg" alt="Parachute"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Saut en parachute
+          </li>
+          <li class="flex items-center group"><img src="public/icon/ski.svg" alt="Ski"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Ski</li>
+          <li class="flex items-center group"><img src="public/icon/plane.svg" alt="Avion"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Voyagez
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="m-auto flex items-center gap-32 group">
+      <h2>N'hésitez pas à me suivre<br>ou à me faire signe!</h2>
+      <img src="public/icon/hand-peace.svg" alt="Peace" class="w-24 mr-2 duration-300 group-hover:rotate-12">
+    </section>
+
+  </main>
 </body>
 
 </html>
