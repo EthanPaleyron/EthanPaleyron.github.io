@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <style type="text/tailwindcss">
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
     @layer utilities {
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         img {
           object-fit: cover;
           user-drag: none; 
         }
-        p {
+        p, li {
           font-size: 1rem;
           font-weight: 500;
           font-family: "Nunito", sans-serif;
+          line-height: 1.5rem;
         }
         h1 {
           font-size: 4rem;
@@ -26,21 +27,51 @@
         h2, span {
           font-size: 1.7rem;
           font-weight: 700;
-          line-height: 2.2rem;
           font-family: "Nunito", sans-serif;
+          line-height: 2.2rem;
         }
-        @media screen and (max-width: 768px) {
-          * {
-            font-size: 0.5rem;
-            line-height: 0.6rem;
+        /* @media screen and (max-width: 1536px) {
+        } */
+        @media screen and (max-width: 1280px) {
+          p, li {
+            font-size: 0.9rem;
+            line-height: 1.2rem;
           }
           h1 {
-            font-size: 2.6rem;
-            line-height: 2.3rem;
+            font-size: 3rem;
+            line-height: 2.4rem;
           }
           h2, span {
-            font-size: 1.1rem;
-            line-height: 1.1rem;
+            font-size: 1.3rem;
+            line-height: 1.5rem;
+          }
+        }
+        @media screen and (max-width: 1024px) {
+          p, li {
+            font-size: 1rem;
+            line-height: 1.5rem;
+          }
+          h1 {
+            font-size: 4rem;
+            line-height: 3.2rem;
+          }
+          h2, span {
+            font-size: 1.7rem;
+            line-height: 2.2rem;
+          }
+        }
+        @media screen and (max-width: 768px) {
+          p, li {
+            font-size: 0.9rem;
+            line-height: 1.2rem;
+          }
+          h1 {
+            font-size: 3rem;
+            line-height: 2.4rem;
+          }
+          h2, span {
+            font-size: 1.3rem;
+            line-height: 1.5rem;
           }
         }
 
@@ -72,14 +103,14 @@
   <title>Ethan Paleyron</title>
 </head>
 
-<body class="bg-[url(public/bg.webp)] bg-cover flex">
+<body class="bg-[url(public/bg.webp)] bg-cover flex lg:flex-row flex-col">
   <main
-    class="w-full md:w-2/4 h-lvh p-8 pr-20 text-white bg-gradient-to-t from-dark_blue to-light_brown flex flex-col gap-12 slide-in-left">
+    class="w-full lg:w-2/4 lg:h-lvh p-8 pr-20 text-white bg-gradient-to-t from-dark_blue to-light_brown flex flex-col gap-12 slide-in-left">
 
-    <section class="flex">
+    <section class="flex lg:flex-row flex-row-reverse lg:justify-start justify-between">
       <img src="public/GH019198009.jpg" alt="Photo de profile" style="border-radius: 50% 30% 50% 30% / 30% 50% 30% 50%;"
-        class="w-40 h-40 custom-image ease-out duration-300 hover:rotate-12">
-      <div class="ml-16 flex flex-col justify-between">
+        class="md:w-40 md:h-40 w-28 h-28 custom-image ease-out duration-300 hover:rotate-12">
+      <div class="lg:ml-16 flex flex-col justify-between">
         <h1 class="uppercase">
           Ethan<br>Paleyron
         </h1>
@@ -95,8 +126,8 @@
 
     <section>
       <h2>Mes passions</h2>
-      <div class="flex justify-between leading-10">
-        <ul>
+      <div class="flex justify-between leading-10 gap-4">
+        <ul class="hidden xl:flex flex-col gap-4">
           <li class="flex items-center group"><img src="public/icon/passion/hand-fist.svg" alt="Main poing"
               class="w-5 mr-2 duration-300 group-hover:rotate-12"> Boxe</li>
           <li class="flex items-center group"><img src="public/icon/passion/book-open-reader.svg"
@@ -107,7 +138,7 @@
           <li class="flex items-center group"><img src="public/icon/passion/mountain.svg" alt="Montagne"
               class="w-5 mr-2 duration-300 group-hover:rotate-12"> Escalade</li>
         </ul>
-        <ul>
+        <ul class="hidden xl:flex flex-col gap-4">
           <li class="flex items-center group"><img src="public/icon/passion/gamepad.svg" alt="Manette de jeu"
               class="w-5 mr-2 duration-300 group-hover:rotate-12"> Jeux Vidéo
             (Minecraft, Brawl stars, Geometry dash)</li>
@@ -117,7 +148,37 @@
           <li class="flex items-center group"><img src="public/icon/passion/fish.svg" alt="Poisson"
               class="w-5 mr-2 duration-300 group-hover:rotate-12"> Plongée</li>
         </ul>
-        <ul>
+        <ul class="hidden xl:flex flex-col gap-4">
+          <li class="flex items-center group"><img src="public/icon/passion/parachute.svg" alt="Parachute"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Saut en parachute
+          </li>
+          <li class="flex items-center group"><img src="public/icon/passion/ski.svg" alt="Ski"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Ski</li>
+          <li class="flex items-center group"><img src="public/icon/passion/plane.svg" alt="Avion"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Voyagez
+          </li>
+        </ul>
+
+        <ul class="xl:hidden flex flex-col gap-4">
+          <li class="flex items-center group"><img src="public/icon/passion/hand-fist.svg" alt="Main poing"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Boxe</li>
+          <li class="flex items-center group"><img src="public/icon/passion/book-open-reader.svg"
+              alt="Livre ouvert lecteur" class="w-5 mr-2 duration-300 group-hover:rotate-12"> Développement
+            personnel</li>
+          <li class="flex items-center group"><img src="public/icon/passion/chess-knight.svg" alt="Chevalier"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Echecs</li>
+          <li class="flex items-center group"><img src="public/icon/passion/mountain.svg" alt="Montagne"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Escalade</li>
+          <li class="flex items-center group"><img src="public/icon/passion/gamepad.svg" alt="Manette de jeu"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Jeux Vidéo
+            (Minecraft, Brawl stars, Geometry dash)</li>
+          <li class="flex items-center group"><img src="public/icon/passion/music.svg" alt="Musique"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Musique (dubstep,
+            rap americain)</li>
+        </ul>
+        <ul class="xl:hidden flex flex-col gap-4">
+          <li class="flex items-center group"><img src="public/icon/passion/fish.svg" alt="Poisson"
+              class="w-5 mr-2 duration-300 group-hover:rotate-12"> Plongée</li>
           <li class="flex items-center group"><img src="public/icon/passion/parachute.svg" alt="Parachute"
               class="w-5 mr-2 duration-300 group-hover:rotate-12"> Saut en parachute
           </li>
@@ -130,43 +191,72 @@
       </div>
     </section>
 
-    <section class="m-auto flex items-center gap-32 group">
+    <section class="lg:m-auto mx-auto my-10 flex items-center md:gap-32 gap-12 group">
       <h2 class="text-center">N'hésitez pas à me suivre<br>ou à me faire signe!</h2>
-      <img src="public/icon/hand-peace.svg" alt="Peace" class="w-24 mr-2 duration-300 group-hover:rotate-12">
+      <img src="public/icon/hand-peace.svg" alt="Peace" class="md:w-24 w-12 md:mr-2 duration-300 group-hover:rotate-12">
     </section>
   </main>
 
   <button title="Musique"
-    class="w-20 h-20 bg-gray-400/50 backdrop-blur-lg rounded-full flex justify-center items-center absolute top-8 right-8 group"><img
-      src="public/icon/volume-xmark.svg" alt="volume" class="w-8 duration-300 group-hover:rotate-12"></button>
+    class="xl:w-20 xl:h-20 w-16 h-16 bg-gray-400/50 backdrop-blur-lg rounded-full flex justify-center items-center absolute top-8 right-8 group"><img
+      src="public/icon/volume-xmark.svg" alt="volume" class="xl:w-8 w-7 duration-300 group-hover:rotate-12"></button>
 
-  <div class="text-dark_blue font-bold m-auto w-1/4 bg-gray-400/50 backdrop-blur-lg p-6 rounded-xl">
+  <div class="hidden lg:block text-dark_blue font-bold m-auto w-1/4 bg-gray-400/50 backdrop-blur-lg p-6 rounded-xl">
     <ul class="flex flex-col gap-4">
       <li><a href="https://www.linkedin.com/in/ethan-paleyron-4456092b2/" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/linkedin.svg"
-            alt=">Linkedin" class="w-8 mr-2 duration-300 group-hover:rotate-12">
+            alt="Linkedin" class="xl:w-8 w-7 mr-2 duration-300 group-hover:rotate-12">
           <span class="w-full text-center group-hover:underline">Linkedin</span>
         </a></li>
       <li><a href="mailto:paleyron.ethan.05@gmail.com" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/mail.svg"
-            alt=">Mail" class="w-8 mr-2 duration-300 group-hover:rotate-12">
+            alt="Mail" class="xl:w-8 w-7 mr-2 duration-300 group-hover:rotate-12">
           <span class="w-full text-center group-hover:underline">Mail</span>
         </a></li>
       <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
-            src="public/icon/link/display.svg" alt=">Portfolio" class="w-8 mr-2 duration-300 group-hover:rotate-12">
+            src="public/icon/link/display.svg" alt="Portfolio" class="xl:w-8 w-7 mr-2 duration-300 group-hover:rotate-12">
           <span class="w-full text-center group-hover:underline">Portfolio</span>
         </a></li> -->
       <li><a href="https://github.com/EthanPaleyron" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/github.svg"
-            alt=">GitHub" class="w-8 mr-2 duration-300 group-hover:rotate-12">
+            alt="GitHub" class="md:w-7 w-5 mr-2 duration-300 group-hover:rotate-12">
           <span class="w-full text-center group-hover:underline">GitHub</span>
         </a></li>
       <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
-            src="public/icon/link/discord.svg" alt=">Discord" class="w-8 mr-2 duration-300 group-hover:rotate-12">
+            src="public/icon/link/discord.svg" alt="Discord" class="xl:w-8 w-7 mr-2 duration-300 group-hover:rotate-12">
           <span class="w-full text-center group-hover:underline">Discord</span>
         </a></li> -->
     </ul>
   </div>
+
+  <footer class="lg:hidden text-dark_blue bg-dark_blue px-8 pb-16">
+    <hr class="mx-auto mb-8 w-11/12 border-2">
+    <ul class="flex flex-wrap justify-center gap-6">
+      <li><a href="https://www.linkedin.com/in/ethan-paleyron-4456092b2/" target="_blank"
+          class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/linkedin.svg"
+            alt="Linkedin" class="md:w-7 w-5 mr-2 duration-300 group-hover:rotate-12">
+          <span class="w-full text-center group-hover:underline">Linkedin</span>
+        </a></li>
+      <li><a href="mailto:paleyron.ethan.05@gmail.com" target="_blank"
+          class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/mail.svg"
+            alt="Mail" class="md:w-7 w-5 mr-2 duration-300 group-hover:rotate-12">
+          <span class="w-full text-center group-hover:underline">Mail</span>
+        </a></li>
+      <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
+                  src="public/icon/link/display.svg" alt="Portfolio" class="xl:w-8 w-7 mr-2 duration-300 group-hover:rotate-12">
+                <span class="w-full text-center group-hover:underline">Portfolio</span>
+              </a></li> -->
+      <li><a href="https://github.com/EthanPaleyron" target="_blank"
+          class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/github.svg"
+            alt="GitHub" class="md:w-7 w-5 mr-2 duration-300 group-hover:rotate-12">
+          <span class="w-full text-center group-hover:underline">GitHub</span>
+        </a></li>
+      <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
+                  src="public/icon/link/discord.svg" alt="Discord" class="md:w-7 w-5 mr-2 duration-300 group-hover:rotate-12">
+                <span class="w-full text-center group-hover:underline">Discord</span>
+              </a></li> -->
+    </ul>
+  </footer>
 
   <!-- <script type="module" src="js/annimation.js"></script> -->
 </body>
