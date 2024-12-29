@@ -4,7 +4,7 @@ const volume = document.querySelector("#volume");
 const icon = document.querySelector("#volume > img");
 
 closePopup.addEventListener("click", () => {
-  audio.play();
+  audio.play(); // Assurez-vous que l'audio démarre avec une interaction utilisateur
 });
 
 let isFading = false;
@@ -14,7 +14,6 @@ volume.addEventListener("click", (e) => {
   if (isFading) return;
 
   if (isPlay) {
-    // Couper la musique
     icon.src = "public/icon/volume-xmark.svg";
     icon.alt = "Remettre la musique";
     volume.title = "Remettre la musique";
@@ -31,11 +30,13 @@ volume.addEventListener("click", (e) => {
       }
     }, 50);
   } else {
-    // Relancer la musique
-    audio.play();
-    icon.src = "public/icon/volume-high.svg";
-    icon.alt = "Couper la musique";
-    volume.title = "Couper la musique";
+    // Relance la musique uniquement si l'audio est en pause
+    if (audio.paused) {
+      audio.play();
+      icon.src = "public/icon/volume-high.svg";
+      icon.alt = "Couper la musique";
+      volume.title = "Couper la musique";
+    }
     isFading = true;
     let volumeFadeIn = setInterval(() => {
       if (audio.volume < 0.95) {
