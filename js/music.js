@@ -1,25 +1,22 @@
 const audio = document.querySelector("audio");
+const closePopup = document.querySelector("#closePopup");
+const volume = document.querySelector("#volume");
 const icon = document.querySelector("#volume > img");
 
-// function playAudioOnce(event) {
-//   audio.play();
-//   icon.src = "public/icon/volume-high.svg";
-
-//   document.querySelector("body").removeEventListener("click", playAudioOnce);
-// }
-
-// document.querySelector("body").addEventListener("click", playAudioOnce);
+closePopup.addEventListener("click", () => {
+  audio.play();
+});
 
 let isFading = false;
-let volumeBool = false;
+let isPlay = true;
 
-document.querySelector("#volume").addEventListener("click", (e) => {
-  //   e.stopPropagation();
-
+volume.addEventListener("click", (e) => {
   if (isFading) return;
 
-  if (volumeBool) {
+  if (isPlay) {
     icon.src = "public/icon/volume-xmark.svg";
+    icon.alt = "Remettre la musique";
+    volume.title = "Remettre la musique";
     isFading = true;
     let volumeFadeOut = setInterval(() => {
       if (audio.volume > 0.05) {
@@ -27,13 +24,15 @@ document.querySelector("#volume").addEventListener("click", (e) => {
       } else {
         audio.volume = 0;
         clearInterval(volumeFadeOut);
-        volumeBool = false;
+        isPlay = false;
         isFading = false;
       }
     }, 50);
   } else {
     audio.play();
     icon.src = "public/icon/volume-high.svg";
+    icon.alt = "Couper la musique";
+    volume.title = "Couper la musique";
     isFading = true;
     let volumeFadeIn = setInterval(() => {
       if (audio.volume < 0.95) {
@@ -41,7 +40,7 @@ document.querySelector("#volume").addEventListener("click", (e) => {
       } else {
         audio.volume = 1;
         clearInterval(volumeFadeIn);
-        volumeBool = true;
+        isPlay = true;
         isFading = false;
       }
     }, 50);

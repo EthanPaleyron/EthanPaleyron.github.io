@@ -13,7 +13,7 @@
           user-drag: none; 
         }
         .pp {
-          border-radius: 50% 30% 50% 30% / 30% 50% 30% 50%;
+          border-radius: 65% 30% 65% 30% / 30% 65% 30% 65%;
           transform: translateY(0);
         }
         p, li {
@@ -34,11 +34,9 @@
           font-family: "Nunito", sans-serif;
           line-height: 2.2rem;
         }
-        /* @media screen and (max-width: 1536px) {
-          } */
-          @media screen and (max-width: 1280px) {
-            p, li {
-              font-size: 0.9rem;
+        @media screen and (max-width: 1280px) {
+          p, li {
+            font-size: 0.9rem;
             line-height: 1.2rem;
           }
           h1 {
@@ -63,9 +61,6 @@
             font-size: 1.7rem;
             line-height: 2.2rem;
           }
-          .pp {
-            transform: translateY(-5rem);
-          }
         }
         @media screen and (max-width: 768px) {
           p, li {
@@ -82,15 +77,92 @@
           }
         }
 
-
-        /* .slide-in-left {
-          transform: translateX(-100%);
-          transition: transform 1.5s cubic-bezier(0, 0, 0.3, 1);
+        /* Landing animations */
+        .show-popup {
+          animation: slideInFromTop 1s forwards;
         }
-        .slide-in-left-active {
-          transform: translateX(0);
+
+        @keyframes slideInFromTop {
+          0% {
+            top: -100%;
+            opacity: 0;
+          }
+          100% {
+            top: 50%;
+            opacity: 1;
+          }
+        }
+
+        .close-popup {
+          animation: slideDown 0.6s forwards;
+        }
+
+        @keyframes slideDown {
+          0% {
+            transform: translate(-50%, -50%);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, 100%);
+            opacity: 0;
+          }
+        }
+
+        
+        .volume-button {
+          transform: translateY(-150%) scale(0.8);
+          opacity: 0;
+          transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out;
+        }
+
+        .volume-button-active {
+          transform: translate(0) rotate(0) scale(1);
           opacity: 1;
-        } */
+        }
+
+        /* Desktop animation */
+        @media screen and (min-width: 1024px) {
+          .slide-in-left {
+            transform: translateX(-100%) rotate(-30deg);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out;
+          }
+        
+          .slide-in-right {
+            transform: translateX(150%) rotate(30deg);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out;
+          }
+        
+          .slide-in-left-active, .slide-in-right-active {
+            transform: translate(0) rotate(0) scale(1);
+            opacity: 1;
+          }
+        
+          .volume-button-active {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.4);
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out,
+              box-shadow 0.5s ease-in-out 1.5s;
+          }
+        }
+
+        /* Mobile animation */
+        .header-mobile {
+          height: 60vw;
+          transition: height 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out;
+        }
+        @media screen and (max-width: 1024px) {
+          .pp {
+            transform: translateX(125%) rotate(30deg);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s ease-in-out;
+          }
+
+          .pp-mobile-active {
+            transform: translateX(0) translateY(-5rem) rotate(0);
+            opacity: 1;
+          }
+        }
       }
     </style>
   <script>
@@ -110,11 +182,27 @@
   <title>Ethan Paleyron</title>
 </head>
 
-<body class="min-h-screen lg:bg-[url(public/bg.webp)] bg-cover bg-no-repeat flex lg:flex-row flex-col">
-  <header class="lg:hidden"><img src="public/bg.webp" alt="bg"></header>
+<body
+  class="min-h-screen lg:bg-[url(public/bg.webp)] bg-cover bg-no-repeat flex lg:flex-row flex-col overflow-y-hidden overflow-x-hidden">
+  <header class="lg:hidden"><img class="h-dvh" src="public/bg.webp" alt="bg"></header>
+
+  <div id="popup"
+    class="show-popup absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-dark_blue font-bold m-auto w-5/6 text-center bg-gray-400/50 backdrop-blur-lg py-8 px-4 rounded-xl flex flex-col items-center gap-8 lg:w-2/4 lg:py-10">
+    <h2 class="leading-6 lg:leading-8">Bienvenue sur mon link in bio !<br>Augmente le son et découvre mon univers !</h2>
+    <p class="mt-3 leading-4 lg:leading-6">
+      Attention ! Ce site est une expérience immersive, et ça commence par un peu de musique sympa.
+      <br>
+      Monte le son, ajuste ton casque, et laisse-toi porter
+      <img src="public/icon/headphones.svg" alt="Casque de musique"
+        class="inline-block ml-1 w-5 duration-300 lg:group-hover:rotate-12">
+    </p>
+    <button id="closePopup" class="bg-white w-fit px-6 py-4 rounded-xl flex items-center group">
+      OK, c'est parti !
+    </button>
+  </div>
 
   <main
-    class="flex-2 w-full lg:mt-0 lg:w-2/4 ms:p-8 p-5 lg:pr-20 text-white bg-gradient-to-t from-dark_blue to-light_brown flex flex-col gap-12 slide-in-left">
+    class="slide-in-left flex-2 w-full lg:mt-0 lg:w-2/4 ms:p-8 p-5 lg:pr-20 text-white bg-gradient-to-t from-dark_blue to-light_brown flex flex-col gap-12 hidden">
 
     <section class="flex lg:flex-row flex-row-reverse lg:justify-start justify-between">
       <img src="public/pp.webp" alt="Photo de profile"
@@ -129,13 +217,14 @@
 
     <section>
       <h2>Bienvenue sur mon link in bio!</h2>
-      <p>J'ai 18 ans et je me suis lancé dans l'informatique en tant que développeur web Fullstack en alternance au sein
+      <p class="mt-3">J'ai 18 ans et je me suis lancé dans l'informatique en tant que développeur web Fullstack en
+        alternance au sein
         de l'établissement EDEN SCHOOL.</p>
     </section>
 
     <section>
       <h2>Mes passions</h2>
-      <div class="flex justify-between leading-10 gap-12">
+      <div class="mt-3 flex justify-between leading-10 gap-12">
         <ul class="hidden xl:flex flex-col gap-4">
           <li class="flex items-center group"><img src="public/icon/passion/hand-fist.svg" alt="Main poing"
               class="w-5 mr-2 duration-300 lg:group-hover:rotate-12"> Boxe</li>
@@ -153,7 +242,7 @@
             (Minecraft, Brawl stars, Geometry dash)</li>
           <li class="flex items-center group"><img src="public/icon/passion/music.svg" alt="Musique"
               class="w-5 mr-2 duration-300 lg:group-hover:rotate-12"> Musique (dubstep,
-            rap americain)</li>
+            rap americain, phonk)</li>
           <li class="flex items-center group"><img src="public/icon/passion/fish.svg" alt="Poisson"
               class="w-5 mr-2 duration-300 lg:group-hover:rotate-12"> Plongée</li>
         </ul>
@@ -183,7 +272,7 @@
             (Minecraft, Brawl stars, Geometry dash)</li>
           <li class="flex items-center group"><img src="public/icon/passion/music.svg" alt="Musique"
               class="w-5 mr-2 duration-300 lg:group-hover:rotate-12"> Musique (dubstep,
-            rap americain)</li>
+            rap americain, phonk)</li>
         </ul>
         <ul class="xl:hidden flex flex-col gap-4">
           <li class="flex items-center group"><img src="public/icon/passion/fish.svg" alt="Poisson"
@@ -207,19 +296,25 @@
     </section>
   </main>
 
-  <button id="volume" title="Musique"
-    class="xl:w-20 xl:h-20 lg:w-16 lg:h-16 w-12 h-12 bg-gray-400/50 backdrop-blur-lg rounded-full flex justify-center items-center absolute top-8 right-8 group"><img
-      src="public/icon/volume-xmark.svg" alt="volume"
+  <button id="volume" title="Couper la musique"
+    class="volume-button xl:w-20 xl:h-20 lg:w-16 lg:h-16 w-12 h-12 bg-gray-400/50 backdrop-blur-lg rounded-full flex justify-center items-center absolute top-8 right-8 group"><img
+      src="public/icon/volume-high.svg" alt="volume"
       class="xl:w-8 lg:w-7 w-5 duration-300 lg:group-hover:rotate-12"></button>
 
-  <div class="hidden lg:block text-dark_blue font-bold m-auto w-1/4 bg-gray-400/50 backdrop-blur-lg p-6 rounded-xl">
+  <aside
+    class="slide-in-right hidden lg:block text-dark_blue font-bold m-auto w-2/5 2xl:w-1/4 bg-gray-400/50 backdrop-blur-lg p-6 rounded-xl">
     <ul class="flex flex-col gap-4">
+      <li><a href="https://www.instagram.com/ethanp._05/" target="_blank"
+          class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/instagram.svg"
+            alt="Instagram" class="xl:w-8 w-7 mr-2 duration-300 lg:group-hover:rotate-12">
+          <span class="w-full text-center lg:group-hover:underline">Instagram</span>
+        </a></li>
       <li><a href="https://www.linkedin.com/in/ethan-paleyron-4456092b2/" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/linkedin.svg"
             alt="Linkedin" class="xl:w-8 w-7 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">Linkedin</span>
         </a></li>
-      <li><a href="mailto:paleyron.ethan.05@gmail.com" target="_blank"
+      <li><a href="mailto:ethan.paleyron@proton.me" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/mail.svg"
             alt="Mail" class="xl:w-8 w-7 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">Mail</span>
@@ -233,22 +328,23 @@
             alt="GitHub" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">GitHub</span>
         </a></li>
-      <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
-            src="public/icon/link/discord.svg" alt="Discord" class="xl:w-8 w-7 mr-2 duration-300 lg:group-hover:rotate-12">
-          <span class="w-full text-center lg:group-hover:underline">Discord</span>
-        </a></li> -->
     </ul>
-  </div>
+  </aside>
 
-  <footer class="lg:hidden text-dark_blue bg-dark_blue px-8 pb-16">
+  <footer class="lg:hidden text-dark_blue bg-dark_blue px-8 pb-16 hidden">
     <hr class="mx-auto mb-8 w-11/12 border-2">
     <ul class="flex flex-wrap justify-center gap-6">
+      <li><a href="https://www.instagram.com/ethanp._05/" target="_blank"
+          class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/instagram.svg"
+            alt="Instagram" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
+          <span class="w-full text-center lg:group-hover:underline">Instagram</span>
+        </a></li>
       <li><a href="https://www.linkedin.com/in/ethan-paleyron-4456092b2/" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/linkedin.svg"
             alt="Linkedin" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">Linkedin</span>
         </a></li>
-      <li><a href="mailto:paleyron.ethan.05@gmail.com" target="_blank"
+      <li><a href="mailto:ethan.paleyron@proton.me" target="_blank"
           class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img src="public/icon/link/mail.svg"
             alt="Mail" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">Mail</span>
@@ -262,16 +358,12 @@
             alt="GitHub" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
           <span class="w-full text-center lg:group-hover:underline">GitHub</span>
         </a></li>
-      <!-- <li><a href="" target="_blank" class="bg-white w-full px-6 py-4 rounded-xl flex items-center group"><img
-                  src="public/icon/link/discord.svg" alt="Discord" class="md:w-7 w-5 mr-2 duration-300 lg:group-hover:rotate-12">
-                <span class="w-full text-center lg:group-hover:underline">Discord</span>
-              </a></li> -->
     </ul>
   </footer>
 
   <audio src="public/snowfall.mp3" loop></audio>
   <script type="module" src="js/music.js"></script>
-  <!-- <script type="module" src="js/annimation.js"></script> -->
+  <script type="module" src="js/annimation.js"></script>
 </body>
 
 </html>
