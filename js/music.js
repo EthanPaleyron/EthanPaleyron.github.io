@@ -14,6 +14,7 @@ volume.addEventListener("click", (e) => {
   if (isFading) return;
 
   if (isPlay) {
+    // Couper la musique
     icon.src = "public/icon/volume-xmark.svg";
     icon.alt = "Remettre la musique";
     volume.title = "Remettre la musique";
@@ -23,12 +24,14 @@ volume.addEventListener("click", (e) => {
         audio.volume -= 0.05;
       } else {
         audio.volume = 0;
+        audio.pause(); // Met en pause l'audio
         clearInterval(volumeFadeOut);
         isPlay = false;
         isFading = false;
       }
     }, 50);
   } else {
+    // Relancer la musique
     audio.play();
     icon.src = "public/icon/volume-high.svg";
     icon.alt = "Couper la musique";
