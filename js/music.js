@@ -1,8 +1,8 @@
 const audio = new Audio("../public/snowfall.mp3");
+audio.loop = true;
 const closePopup = document.querySelector("#closePopup");
 const volume = document.querySelector("#volume");
 const icon = document.querySelector("#volume > img");
-audio.loop();
 
 let isFading = false;
 let isPlaying = false;
