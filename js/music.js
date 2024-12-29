@@ -5,6 +5,7 @@ const icon = document.querySelector("#volume > img");
 
 let isFading = false;
 let isPlaying = false;
+let volumeLevel = 1;
 
 closePopup.addEventListener("click", () => {
   if (!isPlaying) {
@@ -24,14 +25,16 @@ volume.addEventListener("click", (e) => {
     icon.alt = "Remettre la musique";
     volume.title = "Remettre la musique";
     isFading = true;
+
     let volumeFadeOut = setInterval(() => {
-      if (audio.volume > 0.05) {
-        audio.volume -= 0.05;
+      if (volumeLevel > 0.05) {
+        volumeLevel -= 0.05;
+        audio.volume = volumeLevel;
       } else {
-        audio.volume = 0;
         audio.pause();
-        isPlaying = false;
+        audio.volume = 0;
         clearInterval(volumeFadeOut);
+        isPlaying = false;
         isFading = false;
       }
     }, 50);
@@ -41,9 +44,11 @@ volume.addEventListener("click", (e) => {
     icon.alt = "Couper la musique";
     volume.title = "Couper la musique";
     isFading = true;
+
     let volumeFadeIn = setInterval(() => {
-      if (audio.volume < 0.95) {
-        audio.volume += 0.05;
+      if (volumeLevel < 0.95) {
+        volumeLevel += 0.05;
+        audio.volume = volumeLevel;
       } else {
         audio.volume = 1;
         clearInterval(volumeFadeIn);
